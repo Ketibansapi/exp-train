@@ -1,7 +1,9 @@
 const router = require('express').Router()
 const {
     register,
-    login
+    login,
+    refresh,
+    revoke
 } = require('../controllers/auth.controller')
 const {
     registerSchema,
@@ -12,6 +14,8 @@ const checkValidation = require('../lib/checkValidation')
 function authRouter(params) {
     router.post('/register', registerSchema, checkValidation, register)
     router.post('/login', loginSchema, checkValidation, login)
+    router.post('/refresh', refresh)
+    router.post('/revoke', revoke)
 
     return router
 }
