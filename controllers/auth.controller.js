@@ -90,9 +90,18 @@ async function login(req, res) {
     }
 }
 
-function refresh(req, res) {
+async function refresh(req, res) {
     // Refresh token
     // Check database valid
+    let user
+    try {
+        user = await User.findOne({token: { "$in" : [req.body.refreshToken]}})
+        
+        if(!user) return error(res, 400, "88tgasbg", "Unknown refresh token")
+    } catch (exception) {
+        console.error(exception)
+        return error(res, 400, "88tgasbg", "Unknown email")
+    }
 
     // Create access token
     let token
@@ -103,10 +112,15 @@ function refresh(req, res) {
     } catch (error) {
         return error(res, 400, "785bfu62v", "Tak boleh login");
     }
+
+    return success(res, {
+        refresh: req.body.refreshToken,
+        access: token
+    })
 }
 
-function revoke(req, res) {
-    
+async function revoke(req, res) {
+
 }
 
-module.exports = { register, login }
+module.exports = { register, login, refresh }
