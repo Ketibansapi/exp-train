@@ -65,7 +65,7 @@ async function login(req, res) {
         //Refresh token
         let refreshToken
         try {
-            refreshToken = await randomBytes(16).toString('hex');
+            refreshToken = await randomBytes(16).toString('hex')
 
             let currentToken = user.token
             currentToken.push(token)
@@ -93,7 +93,7 @@ async function login(req, res) {
 
         return success(res, {
             refresh: refreshToken,
-            token: token
+            access: token
         })
     } catch (exception) {
         return error(res, 400, "yuidb9s6", "Some error occur")
@@ -163,9 +163,14 @@ async function revoke(req, res) {
     success(res, "success")
 }
 
+async function health(req, res) {
+    
+}
+
 module.exports = {
     register,
     login,
     refresh,
-    revoke
+    revoke,
+    health
 }
