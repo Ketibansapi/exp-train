@@ -31,8 +31,10 @@ app.use(compression())
  */
 const helloRoute = require('./routes/hello.route')()
 const userRoute = require('./routes/user.route')()
+const authRoute = require('./routes/auth.route')()
 app.use('/hello', helloRoute)
 app.use('/user', userRoute)
+app.use('/auth', authRoute)
 
 app.get('/cookie', (req, res) => {
     res.cookie('apa-apa', 'value', {

@@ -1,8 +1,8 @@
 const User = require('../models/user.model')
-const {
-    success,
-    error
-} = require('../lib/response')
+// const {
+//     success,
+//     error
+// } = require('../lib/response')
 
 async function createUser(req, res) {
     try {

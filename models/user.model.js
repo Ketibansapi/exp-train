@@ -12,7 +12,8 @@ const User = mongoose.model('User', {
         required: true,
         unique: true
     },
-    password: String
+    password: String,
+    token: Array
 })
 
 module.exports = User
